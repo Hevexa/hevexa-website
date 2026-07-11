@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hevexa.net/sitemap.xml
