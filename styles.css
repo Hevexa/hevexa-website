@@ -184,26 +184,6 @@ nav.site-nav a:hover {
   z-index: -1;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--indigo-dark);
-  background: var(--accent-bg);
-  padding: 6px 14px;
-  border-radius: 999px;
-  margin-bottom: 22px;
-}
-
-.eyebrow .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-}
-
 .hero h1 {
   font-family: 'Sora', sans-serif;
   font-weight: 800;
@@ -404,6 +384,71 @@ h3.section-heading {
   text-align: right;
 }
 
+.page-intro {
+  padding: 88px 0 8px;
+  text-align: center;
+}
+
+.page-intro h1 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+
+.page-intro p.lead {
+  max-width: 560px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.value-card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.value-card h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.value-card p {
+  color: var(--muted-strong);
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.cta-band {
+  text-align: center;
+}
+
+.cta-band h3.section-heading {
+  margin-bottom: 14px;
+}
+
+.cta-band .hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
 /* Footer */
 
 footer.site-footer {
@@ -495,8 +540,12 @@ footer.site-footer {
     font-size: 36px;
   }
   .product-grid,
-  .about-grid {
+  .about-grid,
+  .value-grid {
     grid-template-columns: 1fr;
+  }
+  .page-intro h1 {
+    font-size: 32px;
   }
   .product-visual {
     order: -1;
