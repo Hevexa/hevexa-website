@@ -6,6 +6,8 @@ Marketing/company site for Hevexa LLC. Static HTML/CSS, no build step.
 
 - `index.html` — homepage (product, contact)
 - `about.html` — company/about page
+- `privacy.html` — hevexa.net's own privacy policy (covers the website;
+  Braid's app has a separate policy at braid.hevexa.net/privacy)
 - `styles.css` — shared stylesheet
 - `STYLE_GUIDE.md` — design system reference (colors, type, components) —
   read this before making visual changes, to keep things consistent

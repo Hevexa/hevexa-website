@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Hevexa</title>
+<meta name="description" content="How hevexa.net collects, uses, and protects information.">
+<link rel="canonical" href="https://hevexa.net/privacy.html">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
+<meta name="theme-color" content="#3A3FC0">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  .legal h2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    margin: 40px 0 10px;
+  }
+  .legal h2:first-child { margin-top: 0; }
+  .legal p, .legal li {
+    color: var(--muted-strong);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .legal ul { padding-left: 20px; margin: 10px 0; }
+  .legal li { margin-bottom: 6px; }
+  .updated { color: var(--muted); font-size: 13.5px; margin: 0 0 8px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./">
+      <img src="logo.svg" alt="Hevexa">
+      <span>Hevexa</span>
+    </a>
+    <nav class="site-nav">
+      <details class="nav-dropdown">
+        <summary>Apps</summary>
+        <div class="dropdown-menu">
+          <a href="index.html#braid">Braid</a>
+        </div>
+      </details>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-intro">
+    <div class="wrap">
+      <h1>Privacy Policy</h1>
+      <p class="lead">This page covers hevexa.net, our company website — what little it collects, and how it's handled.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap legal">
+      <p class="updated">Last updated July 11, 2026</p>
+
+      <h2>This page is about the website, not the app</h2>
+      <p>hevexa.net is a small, static company site — there's no login, no user accounts, and nothing stored about you as you browse it. Braid, our app, is a separate service with its own accounts and its own data. If you're looking for how <em>Braid</em> handles your data, see the <a href="https://braid.hevexa.net/privacy">Braid privacy policy</a> instead.</p>
+
+      <h2>What this website collects</h2>
+      <p>Browsing hevexa.net doesn't collect anything personal. This site has no analytics, no advertising, and no tracking scripts.</p>
+      <p>Two things worth being upfront about:</p>
+      <ul>
+        <li><strong>Fonts:</strong> pages load the Sora and Inter typefaces from Google Fonts. Loading them may expose your IP address to Google, per Google's own practices — we don't control or receive that data ourselves.</li>
+        <li><strong>Direct contact:</strong> if you email or call using the details in the footer, we receive whatever you send — your address, number, and message — used only to reply to you.</li>
+      </ul>
+
+      <h2>What we don't do</h2>
+      <div class="value-card">
+        <p>No cookies, no analytics or tracking scripts, no advertising, no data brokers, and we never sell information to anyone. There's nothing to opt out of, because none of that exists here.</p>
+      </div>
+
+      <h2>Who hosts this</h2>
+      <p>hevexa.net is hosted on Cloudflare Pages — static files served on our behalf. There's no database behind this site and nothing for Cloudflare to process beyond serving the pages themselves.</p>
+
+      <h2>Children</h2>
+      <p>This website isn't directed at children.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>If this changes in a meaningful way, we'll update the date at the top of this page.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy — email <a href="mailto:chris@hevexa.net">chris@hevexa.net</a> or call <a href="tel:+19378753886">937-875-3886</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="./">
+          <img src="logo.svg" alt="Hevexa">
+          <span>Hevexa</span>
+        </a>
+        <p>A software company based in Huber Heights, Ohio, building focused, private apps.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#braid">Braid</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li class="plain">2002 Cooley Ln<br>Huber Heights, OH 45424</li>
+          <li><a href="tel:+19378753886">937-875-3886</a></li>
+          <li><a href="mailto:chris@hevexa.net">chris@hevexa.net</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Hevexa LLC. All rights reserved.</p>
+      <p class="legal-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="https://braid.hevexa.net/">Braid</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('click', function (e) {
+  document.querySelectorAll('.nav-dropdown[open]').forEach(function (d) {
+    if (!d.contains(e.target)) d.removeAttribute('open');
+  });
+});
+</script>
+
+</body>
+</html>

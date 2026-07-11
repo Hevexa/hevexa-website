@@ -90,7 +90,7 @@ existing ones.
 
 ## Multi-page conventions
 
-- Pages: `index.html`, `about.html`, `404.html`. Header and footer markup
+- Pages: `index.html`, `about.html`, `privacy.html`, `404.html`. Header and footer markup
   is copy-pasted across all of them — there's no shared partial/include
   system (kept intentionally simple, no build step). When adding a new
   page, copy the header/footer from `about.html` rather than writing new
