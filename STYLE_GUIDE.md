@@ -56,7 +56,9 @@ existing ones.
 - Every section's content sits in `<div class="wrap">` (max-width 1040px,
   24px side padding) directly inside a `<section>` (72px vertical padding,
   `--line` top border). Don't invent a new container width.
-- Two-column layouts (`product-grid`, `about-grid`) collapse to one column
+- Plain body copy (no card, no grid) goes in `<div class="prose">` around
+  the `<p>` tags — sets color/size/line-height/max-width consistently.
+- Two-column layouts (`product-grid`) collapse to one column
   under 760px via the shared media query at the bottom of `styles.css` —
   add new grids to that same breakpoint rather than writing a new one.
 
@@ -78,9 +80,11 @@ existing ones.
   `<body>` in each page. To add another app to the "Apps" menu, add another
   `<a>` inside the existing `.dropdown-menu`.
 - **Header:** sticky, blurred backdrop, `.brand` (logo + wordmark) on the
-  left, `.site-nav` + primary CTA button on the right. Identical markup is
-  duplicated at the top of every page (no templating system) — if you
-  change the header, update it in every `.html` file.
+  left, `.site-nav` on the right (`justify-content: space-between` on
+  `.site-header .wrap` gives the separation — no wrapper div or CTA button
+  needed there anymore). Identical markup is duplicated at the top of every
+  page (no templating system) — if you change the header, update it in
+  every `.html` file.
 - **Footer:** `.footer-grid` (brand blurb / Company links / Contact) +
   `.footer-bottom` (copyright + legal links). Also duplicated per page.
 
@@ -100,6 +104,10 @@ existing ones.
 - Contact details (address/phone/email) appear in three places per page:
   the footer, and — on `index.html` only — the JSON-LD `Organization`
   block in `<head>`. Keep all copies in sync if they change.
+- **Contact info lives only in the footer.** Don't add a second card/box
+  elsewhere on the page repeating the address/phone/email (a `.fact-card`
+  version of this existed on the about page and was removed per explicit
+  request — the footer is enough, don't reintroduce it).
 - New pages should be added to `sitemap.xml`.
 
 ## Adding a new section

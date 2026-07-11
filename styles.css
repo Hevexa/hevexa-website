@@ -401,52 +401,11 @@ h3.section-heading {
 
 /* About */
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 48px;
-}
-
-.about-grid p {
+.prose p {
   color: var(--muted-strong);
   font-size: 16px;
   line-height: 1.75;
-  max-width: 520px;
-}
-
-.fact-card {
-  background: var(--card-bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 24px 26px;
-  box-shadow: var(--shadow-sm);
-}
-
-.fact-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 14px;
-}
-
-.fact-row:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.fact-row:first-child {
-  padding-top: 0;
-}
-
-.fact-row .k {
-  color: var(--muted);
-}
-
-.fact-row .v {
-  color: var(--ink);
-  font-weight: 600;
-  text-align: right;
+  max-width: 640px;
 }
 
 .page-intro {
@@ -605,7 +564,6 @@ footer.site-footer {
     font-size: 36px;
   }
   .product-grid,
-  .about-grid,
   .value-grid {
     grid-template-columns: 1fr;
   }
