@@ -59,7 +59,12 @@
     </a>
     <div class="header-right">
       <nav class="site-nav">
-        <a href="#braid">Braid</a>
+        <details class="nav-dropdown">
+          <summary>Apps</summary>
+          <div class="dropdown-menu">
+            <a href="#braid">Braid</a>
+          </div>
+        </details>
         <a href="about.html">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -152,6 +157,14 @@
     </div>
   </div>
 </footer>
+
+<script>
+document.addEventListener('click', function (e) {
+  document.querySelectorAll('.nav-dropdown[open]').forEach(function (d) {
+    if (!d.contains(e.target)) d.removeAttribute('open');
+  });
+});
+</script>
 
 </body>
 </html>
