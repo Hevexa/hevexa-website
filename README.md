@@ -4,9 +4,13 @@ Marketing/company site for Hevexa LLC. Static HTML/CSS, no build step.
 
 ## Structure
 
-- `index.html` — homepage (product, about, contact)
+- `index.html` — homepage (product, contact)
+- `about.html` — company/about page
 - `styles.css` — shared stylesheet
+- `STYLE_GUIDE.md` — design system reference (colors, type, components) —
+  read this before making visual changes, to keep things consistent
 - `logo.svg` — Hevexa mark, also used as favicon
+- `braid-icon.png` — real Braid App Store icon, used in the product card
 - `404.html` — not-found page
 - `robots.txt`, `sitemap.xml` — SEO basics
 
