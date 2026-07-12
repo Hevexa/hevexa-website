@@ -95,12 +95,21 @@ existing ones.
   system (kept intentionally simple, no build step). When adding a new
   page, copy the header/footer from `about.html` rather than writing new
   markup, then adjust nav links.
-- **Always use relative paths** for local assets (`styles.css`, `logo.svg`,
-  `braid-icon.png`) — never a leading `/`. This site has no server-side
-  routing, and a root-absolute path breaks when the file is opened directly
-  via `file://` instead of a real web server. Cross-page links follow the
-  same rule (`about.html`, not `/about.html`; `index.html#contact`, not
-  `/index.html#contact`).
+- **Local asset references** (`styles.css`, `logo.svg`, `braid-icon.png`)
+  use relative paths, no leading `/` — this lets the file still work if
+  ever opened directly via `file://` instead of a real web server.
+- **Cross-page links use clean, root-absolute URLs** — `/about`, `/privacy`,
+  `/#contact`, not `about.html` or `index.html#contact`. The site is
+  deployed as a Cloudflare Worker with `html_handling` left at its default,
+  which auto-redirects `.html` URLs to their clean equivalent — every
+  internal link should point straight at the clean URL so navigation never
+  triggers that redirect (an extra hop that caused real, intermittent
+  unstyled-page bugs in production). `.html` URLs still work as a fallback
+  for old bookmarks/links, just don't use them in our own markup.
+- **`styles.css` is cache-busted** via a `?v=N` query string on every
+  `<link>` reference (all four pages). Bump `N` any time `styles.css`
+  itself changes and redeploy — otherwise Cloudflare's edge cache can keep
+  serving an old cached copy to some visitors after a CSS-only change.
 - Contact details (address/phone/email) appear in three places per page:
   the footer, and — on `index.html` only — the JSON-LD `Organization`
   block in `<head>`. Keep all copies in sync if they change.
