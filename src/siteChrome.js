@@ -36,7 +36,7 @@ export function siteHeader({ homePrefix = "/" } = {}) {
 }
 
 export function siteFooter({ homePrefix = "/" } = {}) {
-  return `<footer class="site-footer" id="contact">
+  return `<footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -99,4 +99,4 @@ export const FONT_LINKS = `<link rel="preconnect" href="https://fonts.googleapis
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">`;
 
-export const STYLESHEET_LINK = `<link rel="stylesheet" href="styles.css?v=2">`;
+export const STYLESHEET_LINK = `<link rel="stylesheet" href="styles.css?v=3">`;

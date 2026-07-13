@@ -122,11 +122,66 @@ ${siteHeader({ homePrefix: "" })}
     </div>
   </section>
 
+  <section id="contact">
+    <div class="wrap">
+      <h2 class="section-title">Contact</h2>
+      <h3 class="section-heading">Get in touch</h3>
+      <div class="contact-card">
+        <form id="contact-form">
+          <input type="email" id="contact-email" placeholder="you@example.com" required autocomplete="email">
+          <textarea id="contact-message" placeholder="What's on your mind?" required></textarea>
+          <input type="text" id="contact-hp" class="hp-field" tabindex="-1" autocomplete="off">
+          <button type="submit" id="contact-btn">Send message</button>
+        </form>
+        <p id="contact-msg"></p>
+        <p class="alt-contact">Prefer email? Reach us directly at <a href="mailto:chris@hevexa.net">chris@hevexa.net</a>.</p>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 ${siteFooter({ homePrefix: "" })}
 
 ${NAV_SCRIPT}
+
+<script>
+(function(){
+  var form = document.getElementById('contact-form');
+  var emailInput = document.getElementById('contact-email');
+  var messageInput = document.getElementById('contact-message');
+  var hpInput = document.getElementById('contact-hp');
+  var btn = document.getElementById('contact-btn');
+  var msg = document.getElementById('contact-msg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.textContent = '';
+    msg.className = '';
+    btn.disabled = true;
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email: emailInput.value, message: messageInput.value, company: hpInput.value })
+    }).then(function(res){
+      return res.json().catch(function(){ return {}; }).then(function(data){ return { ok: res.ok, data: data }; });
+    }).then(function(result){
+      if(result.ok){
+        msg.textContent = "Sent — we'll get back to you soon.";
+        msg.className = 'success';
+        form.style.display = 'none';
+      } else {
+        msg.textContent = result.data.error || 'Something went wrong. Try again.';
+        msg.className = 'error';
+        btn.disabled = false;
+      }
+    }).catch(function(){
+      msg.textContent = 'Could not reach the server. Check your connection.';
+      msg.className = 'error';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
