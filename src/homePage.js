@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+// hevexa-website/src/homePage.js
+// Served at hevexa.net/ (see worker.js). Shared chrome (header, footer,
+// nav script) lives in siteChrome.js.
+import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS, FONT_LINKS, STYLESHEET_LINK } from "./siteChrome.js";
+
+export const HOME_PAGE_HTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,8 +11,7 @@
 <title>Hevexa LLC — Software company in Huber Heights, Ohio</title>
 <meta name="description" content="Hevexa LLC is a software company based in Huber Heights, Ohio. Our first product, Braid, is a private app for couples — coming soon to the App Store.">
 <link rel="canonical" href="https://hevexa.net/">
-<link rel="icon" type="image/svg+xml" href="logo.svg">
-<link rel="apple-touch-icon" href="logo.svg">
+${FAVICON_LINKS}
 <meta name="theme-color" content="#3A3FC0">
 
 <meta property="og:type" content="website">
@@ -22,10 +26,8 @@
 <meta name="twitter:title" content="Hevexa LLC">
 <meta name="twitter:description" content="A software company based in Huber Heights, Ohio, building Braid — a private app for couples.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+${FONT_LINKS}
+${STYLESHEET_LINK}
 
 <script type="application/ld+json">
 {
@@ -52,24 +54,7 @@
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./">
-      <img src="logo.svg" alt="Hevexa">
-      <span>Hevexa</span>
-    </a>
-    <nav class="site-nav">
-      <details class="nav-dropdown">
-        <summary>Apps</summary>
-        <div class="dropdown-menu">
-          <a href="#braid">Braid</a>
-        </div>
-      </details>
-      <a href="/about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+${siteHeader({ homePrefix: "" })}
 
 <main>
   <section class="hero">
@@ -139,54 +124,10 @@
 
 </main>
 
-<footer class="site-footer" id="contact">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="./">
-          <img src="logo.svg" alt="Hevexa">
-          <span>Hevexa</span>
-        </a>
-        <p>A software company based in Huber Heights, Ohio, building focused, private apps.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Apps</h5>
-        <ul>
-          <li><a href="#braid">Braid</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/privacy">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <ul>
-          <li class="plain">2002 Cooley Ln<br>Huber Heights, OH 45424</li>
-          <li><a href="mailto:chris@hevexa.net">chris@hevexa.net</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Hevexa LLC. All rights reserved.</p>
-      <p class="legal-links">
-        <a href="/privacy">Privacy</a>
-        <a href="https://braid.hevexa.net/">Braid</a>
-      </p>
-    </div>
-  </div>
-</footer>
+${siteFooter({ homePrefix: "" })}
 
-<script>
-document.addEventListener('click', function (e) {
-  document.querySelectorAll('.nav-dropdown[open]').forEach(function (d) {
-    if (!d.contains(e.target)) d.removeAttribute('open');
-  });
-});
-</script>
+${NAV_SCRIPT}
 
 </body>
 </html>
+`;

@@ -2,8 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hevexa-website",
   "compatibility_date": "2026-07-12",
+  "main": "src/worker.js",
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
   }
 }

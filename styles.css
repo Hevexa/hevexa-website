@@ -72,6 +72,7 @@ header.site-header {
 }
 
 .site-header .wrap {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,6 +117,27 @@ nav.site-nav a {
 
 nav.site-nav a:hover {
   color: var(--indigo-dark);
+}
+
+.nav-toggle-input {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.nav-toggle-label span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
 }
 
 .nav-dropdown {
@@ -560,6 +582,36 @@ footer.site-footer {
 }
 
 @media (max-width: 760px) {
+  .nav-toggle-label {
+    display: flex;
+  }
+  nav.site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 8px 24px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+  }
+  .nav-toggle-input:checked ~ nav.site-nav {
+    display: flex;
+  }
+  nav.site-nav a {
+    width: 100%;
+    padding: 12px 0;
+  }
+  .nav-dropdown {
+    width: 100%;
+  }
+  .nav-dropdown summary {
+    padding: 12px 0;
+  }
   .hero h1 {
     font-size: 36px;
   }

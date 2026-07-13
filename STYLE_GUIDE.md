@@ -14,7 +14,7 @@ CSS variables and classes below.
   `<img>`/favicon where page fonts aren't loaded.
 - **Voice:** modest and factual, not hypey. "A private space for you and
   your partner," not "Revolutionize your relationship." Short sentences.
-  See existing copy in `index.html`/`about.html` for tone reference.
+  See existing copy in `src/homePage.js`/`src/aboutPage.js` for tone reference.
 
 ## Color tokens
 
@@ -76,43 +76,49 @@ existing ones.
 - **Bulleted feature list:** `.feature-list` — no default markers, small
   teal dot via `::before`.
 - **Nav dropdown:** `.nav-dropdown` is a native `<details>`/`<summary>` —
-  no JS framework, just the outside-click-closes listener at the bottom of
-  `<body>` in each page. To add another app to the "Apps" menu, add another
-  `<a>` inside the existing `.dropdown-menu`.
+  no JS framework, just the outside-click-closes listener in `NAV_SCRIPT`
+  (see below). To add another app to the "Apps" menu, edit the one
+  `siteHeader()` function rather than any individual page.
+- **Mobile nav:** below 760px, `.site-nav` collapses into a hamburger
+  (`.nav-toggle-input`/`.nav-toggle-label`, pure CSS checkbox toggle, no JS
+  needed to open/close). `NAV_SCRIPT` closes it automatically when a nav
+  link is tapped. Don't try to "fit" more nav items by trimming copy — the
+  hamburger already handles overflow, so add what you need to `siteHeader()`.
 - **Header:** sticky, blurred backdrop, `.brand` (logo + wordmark) on the
   left, `.site-nav` on the right (`justify-content: space-between` on
-  `.site-header .wrap` gives the separation — no wrapper div or CTA button
-  needed there anymore). Identical markup is duplicated at the top of every
-  page (no templating system) — if you change the header, update it in
-  every `.html` file.
+  `.site-header .wrap` gives the separation). Markup lives in exactly one
+  place — `siteHeader()` in `src/siteChrome.js` — and every page imports it.
+  Change the header once, it updates everywhere.
 - **Footer:** `.footer-grid` (brand blurb / Company links / Contact) +
-  `.footer-bottom` (copyright + legal links). Also duplicated per page.
+  `.footer-bottom` (copyright + legal links). Also lives once, in
+  `siteFooter()` in `src/siteChrome.js`.
 
 ## Multi-page conventions
 
-- Pages: `index.html`, `about.html`, `privacy.html`, `404.html`. Header and footer markup
-  is copy-pasted across all of them — there's no shared partial/include
-  system (kept intentionally simple, no build step). When adding a new
-  page, copy the header/footer from `about.html` rather than writing new
-  markup, then adjust nav links.
+- Pages: `/` (`src/homePage.js`), `/about` (`src/aboutPage.js`), `/privacy`
+  (`src/privacyPage.js`), routed by `src/worker.js`; `404.html` is the one
+  page that's still a plain static file (Cloudflare serves it directly via
+  `not_found_handling`, never through the Worker). Header/footer markup is
+  shared via `src/siteChrome.js` — see Components above. When adding a new
+  page: create `src/newPage.js` exporting an HTML template that imports
+  `siteHeader()`/`siteFooter()`/`NAV_SCRIPT` from `siteChrome.js`, then
+  register its path in the `PAGES` map in `src/worker.js`.
 - **Local asset references** (`styles.css`, `logo.svg`, `braid-icon.png`)
-  use relative paths, no leading `/` — this lets the file still work if
-  ever opened directly via `file://` instead of a real web server.
+  use relative paths, no leading `/` — kept as a matter of convention from
+  when pages were plain static files; harmless to keep since the Worker
+  serves generated pages at the site root either way.
 - **Cross-page links use clean, root-absolute URLs** — `/about`, `/privacy`,
-  `/#contact`, not `about.html` or `index.html#contact`. The site is
-  deployed as a Cloudflare Worker with `html_handling` left at its default,
-  which auto-redirects `.html` URLs to their clean equivalent — every
-  internal link should point straight at the clean URL so navigation never
-  triggers that redirect (an extra hop that caused real, intermittent
-  unstyled-page bugs in production). `.html` URLs still work as a fallback
-  for old bookmarks/links, just don't use them in our own markup.
+  `/#contact`, not `index.html#contact`. `.html`-suffixed URLs no longer
+  resolve to anything — `index.html`/`about.html`/`privacy.html` were
+  deleted once their content moved into `src/`, so don't link to them.
 - **`styles.css` is cache-busted** via a `?v=N` query string on every
-  `<link>` reference (all four pages). Bump `N` any time `styles.css`
-  itself changes and redeploy — otherwise Cloudflare's edge cache can keep
-  serving an old cached copy to some visitors after a CSS-only change.
-- Contact details (address/phone/email) appear in three places per page:
-  the footer, and — on `index.html` only — the JSON-LD `Organization`
-  block in `<head>`. Keep all copies in sync if they change.
+  `<link>` reference (`STYLESHEET_LINK` in `siteChrome.js`, plus `404.html`'s
+  own copy). Bump `N` any time `styles.css` itself changes and redeploy —
+  otherwise Cloudflare's edge cache can keep serving an old cached copy to
+  some visitors after a CSS-only change.
+- Contact details (address/phone/email) appear in two places: `siteFooter()`
+  in `siteChrome.js` (used by every page), and the JSON-LD `Organization`
+  block in `src/homePage.js` only. Keep both in sync if they change.
 - **Contact info lives only in the footer.** Don't add a second card/box
   elsewhere on the page repeating the address/phone/email (a `.fact-card`
   version of this existed on the about page and was removed per explicit
