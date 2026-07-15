@@ -12,7 +12,7 @@ export const ABOUT_PAGE_HTML = `<!DOCTYPE html>
 <meta name="description" content="Hevexa LLC is a small software company based in Huber Heights, Ohio, building focused, private apps — starting with Braid.">
 <link rel="canonical" href="https://hevexa.net/about">
 ${FAVICON_LINKS}
-<meta name="theme-color" content="#3A3FC0">
+<meta name="theme-color" content="#2D2A6E">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hevexa">

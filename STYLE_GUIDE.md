@@ -8,10 +8,13 @@ CSS variables and classes below.
 ## Brand
 
 - **Name:** Hevexa (company: Hevexa LLC)
-- **Logo:** `logo.svg` — a hexagon badge (indigo→teal gradient) with a
-  white block "H" built from three `<rect>`s. Deliberately *not* SVG
-  `<text>`, so it renders identically everywhere, including as a standalone
-  `<img>`/favicon where page fonts aren't loaded.
+- **Logo:** `logo.svg` — a hexagon badge (deep indigo→plum-rose gradient,
+  "Warm Bridge") with a white block "H" built from three `<rect>`s.
+  Deliberately *not* SVG `<text>`, so it renders identically everywhere,
+  including as a standalone `<img>`/favicon where page fonts aren't loaded.
+  The gradient's two stops are also the `--indigo`/`--rose` tokens below —
+  if the mark changes again, re-derive the palette from it, don't pick new
+  colors independently.
 - **Voice:** modest and factual, not hypey. "A private space for you and
   your partner," not "Revolutionize your relationship." Short sentences.
   See existing copy in `src/homePage.js`/`src/aboutPage.js` for tone reference.
@@ -29,10 +32,10 @@ so dark mode stays correct automatically.
 | `--muted-strong` | `rgba(ink, .8)` | same formula | body copy that needs more contrast than `--muted` |
 | `--bg` | `#F6F7FB` | `#0D0E1C` | page background |
 | `--card-bg` | `#FFFFFF` | `#171929` | cards, header background base |
-| `--line` | `rgba(ink, .09)` | `rgba(ink, .1)` | borders, hairlines |
-| `--indigo` | `#3A3FC0` | `#7B7FE8` | primary brand color, `.btn-primary` |
-| `--indigo-dark` | `#2D30A0` | `#9498F0` | link color, hover states |
-| `--teal` | `#17B6A6` | `#2FD6C4` | accent — section eyebrows, bullet dots |
+| `--line` | `rgba(ink, .12)` | `rgba(ink, .13)` | borders, hairlines |
+| `--indigo` | `#2D2A6E` | `#8983DA` | primary brand color, `.btn-primary` |
+| `--indigo-dark` | `#221F54` | `#A29CEA` | link color, hover states |
+| `--rose` | `#B24C6B` | `#F28FA6` | accent — section eyebrows, bullet dots |
 | `--accent-bg` | `rgba(indigo, .08)` | `rgba(indigo, .14)` | tinted chip/badge backgrounds |
 | `--shadow-sm` / `--shadow-lg` | — | — | card elevation, two weights only |
 | `--radius` (18px) / `--radius-sm` (12px) | — | — | corner rounding, two sizes only |
@@ -48,7 +51,7 @@ existing ones.
   `family=Sora:wght@600;700;800`.
 - **Body:** `'Inter', sans-serif` — weights 400/500/600, set once on `body`.
 - **Eyebrows** (`h2.section-title`): Sora 700, 12.5px, uppercase,
-  `letter-spacing: 0.1em`, colored `--teal`. Always precedes a
+  `letter-spacing: 0.1em`, colored `--rose`. Always precedes a
   `h3.section-heading` inside a section.
 
 ## Layout
@@ -89,6 +92,10 @@ existing ones.
   `.site-header .wrap` gives the separation). Markup lives in exactly one
   place — `siteHeader()` in `src/siteChrome.js` — and every page imports it.
   Change the header once, it updates everywhere.
+- **Hero mark:** `.hero-mark` — a 68px rendering of `logo.svg` centered
+  above `.hero h1` on the homepage only (not `.page-intro` on other pages).
+  Gives the hero a visual anchor beyond text; don't add it to subpages,
+  where the header's own logo is enough.
 - **Footer:** `.footer-grid` (brand blurb / Company links / Contact) +
   `.footer-bottom` (copyright + legal links). Also lives once, in
   `siteFooter()` in `src/siteChrome.js`.

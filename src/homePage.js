@@ -12,7 +12,7 @@ export const HOME_PAGE_HTML = `<!DOCTYPE html>
 <meta name="description" content="Hevexa LLC is a software company based in Huber Heights, Ohio. Our first product, Braid, is a private app for couples — coming soon to the App Store.">
 <link rel="canonical" href="https://hevexa.net/">
 ${FAVICON_LINKS}
-<meta name="theme-color" content="#3A3FC0">
+<meta name="theme-color" content="#2D2A6E">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hevexa">
@@ -59,6 +59,7 @@ ${siteHeader({ homePrefix: "" })}
 <main>
   <section class="hero">
     <div class="wrap">
+      <div class="hero-mark"><img src="logo.svg" alt=""></div>
       <h1>Software for the moments that matter.</h1>
       <p class="lead">Hevexa is a software company building focused, private apps. Our first product, Braid, is coming soon to the App Store.</p>
       <div class="hero-actions">

@@ -5,11 +5,11 @@
   --muted-strong: rgba(var(--ink-rgb), 0.8);
   --bg: #F6F7FB;
   --card-bg: #FFFFFF;
-  --line: rgba(var(--ink-rgb), 0.09);
-  --indigo: #3A3FC0;
-  --indigo-dark: #2D30A0;
-  --teal: #17B6A6;
-  --accent-bg: rgba(58, 63, 192, 0.08);
+  --line: rgba(var(--ink-rgb), 0.12);
+  --indigo: #2D2A6E;
+  --indigo-dark: #221F54;
+  --rose: #B24C6B;
+  --accent-bg: rgba(45, 42, 110, 0.08);
   --shadow-sm: 0 1px 2px rgba(20, 22, 43, 0.04), 0 1px 1px rgba(20, 22, 43, 0.03);
   --shadow-lg: 0 24px 48px -20px rgba(20, 22, 43, 0.22);
   --radius: 18px;
@@ -22,11 +22,11 @@
     --ink-rgb: 237, 238, 247;
     --bg: #0D0E1C;
     --card-bg: #171929;
-    --line: rgba(237, 238, 247, 0.1);
-    --indigo: #7B7FE8;
-    --indigo-dark: #9498F0;
-    --teal: #2FD6C4;
-    --accent-bg: rgba(123, 127, 232, 0.14);
+    --line: rgba(237, 238, 247, 0.13);
+    --indigo: #8983DA;
+    --indigo-dark: #A29CEA;
+    --rose: #F28FA6;
+    --accent-bg: rgba(137, 131, 218, 0.14);
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 24px 48px -20px rgba(0, 0, 0, 0.6);
   }
@@ -265,10 +265,23 @@ nav.site-nav a:hover {
   inset: -20% -10% auto -10%;
   height: 480px;
   background:
-    radial-gradient(480px 280px at 22% 20%, rgba(58, 63, 192, 0.16), transparent 70%),
-    radial-gradient(420px 260px at 78% 10%, rgba(23, 182, 166, 0.14), transparent 70%);
+    radial-gradient(480px 280px at 22% 20%, rgba(45, 42, 110, 0.16), transparent 70%),
+    radial-gradient(420px 260px at 78% 10%, rgba(178, 76, 107, 0.14), transparent 70%);
   pointer-events: none;
   z-index: -1;
+}
+
+.hero-mark {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 28px;
+  filter: drop-shadow(0 14px 26px rgba(45, 42, 110, 0.28));
+}
+
+.hero-mark img {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .hero h1 {
@@ -313,7 +326,7 @@ h2.section-title {
   font-size: 12.5px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--teal);
+  color: var(--rose);
   margin: 0 0 10px;
 }
 
@@ -363,7 +376,7 @@ h3.section-heading {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--rose);
   flex-shrink: 0;
   transform: translateY(-3px);
 }

@@ -99,4 +99,4 @@ export const FONT_LINKS = `<link rel="preconnect" href="https://fonts.googleapis
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">`;
 
-export const STYLESHEET_LINK = `<link rel="stylesheet" href="styles.css?v=3">`;
+export const STYLESHEET_LINK = `<link rel="stylesheet" href="styles.css?v=4">`;
