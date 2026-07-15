@@ -68,6 +68,16 @@ ${siteHeader({ homePrefix: "" })}
     </div>
   </section>
 
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Why Hevexa</h2>
+      <h3 class="section-heading">Built by people who'd use it</h3>
+      <div class="prose" style="margin-top:16px;">
+        <p>Braid started because we wanted something like it for ourselves — not because a market study said couples' apps were trending. Every app we build holds to the same idea: do less, and do it well. <a href="/about">Learn more about us →</a></p>
+      </div>
+    </div>
+  </section>
+
   <section id="braid">
     <div class="wrap">
       <div class="product-grid">
