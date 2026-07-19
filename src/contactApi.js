@@ -72,7 +72,7 @@ export async function handleContact(request, env) {
       from,
       to: "chris@hevexa.net",
       reply_to: email,
-      subject: "New message from hevexa.net",
+      subject: `New message from hevexa.net — ${email}`,
       html: `<p><strong>From:</strong> ${escapeHtml(email)}</p><p style="white-space:pre-wrap">${escapeHtml(message)}</p>`,
     }),
   });
