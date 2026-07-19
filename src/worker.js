@@ -19,6 +19,16 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // www.hevexa.net is bound to this same Worker but was serving
+    // identical content instead of redirecting — duplicate URLs for the
+    // same page split ranking signals between them (see Bing's Dec 2025
+    // "Does Duplicate Content Hurt SEO" post). hevexa.net is canonical.
+    if (url.hostname === "www.hevexa.net") {
+      url.hostname = "hevexa.net";
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (request.method === "POST" && url.pathname === "/api/contact") {
       return handleContact(request, env);
     }
