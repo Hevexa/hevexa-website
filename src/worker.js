@@ -33,8 +33,13 @@ export default {
       return handleContact(request, env);
     }
 
-    if (request.method === "GET" && url.pathname in PAGES) {
-      return new Response(PAGES[url.pathname], {
+    // HEAD as well as GET — crawlers (Bing's among them) often send a HEAD
+    // request to check a URL before a full GET, and this pathname wasn't
+    // matching HEAD, so it fell through to the asset layer's 404 (there's
+    // no backing .html file for these routes anymore) even though GET
+    // returned the page fine — indexing tools saw a 404, browsers didn't.
+    if ((request.method === "GET" || request.method === "HEAD") && url.pathname in PAGES) {
+      return new Response(request.method === "HEAD" ? null : PAGES[url.pathname], {
         status: 200,
         headers: { "Content-Type": "text/html; charset=UTF-8" },
       });
