@@ -8,7 +8,7 @@ export const ABOUT_PAGE_HTML = `<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Hevexa</title>
+<title>About Hevexa — Software Company in Huber Heights, Ohio</title>
 <meta name="description" content="Hevexa LLC is a small software company based in Huber Heights, Ohio, building focused, private apps — starting with Braid.">
 <link rel="canonical" href="https://hevexa.net/about">
 ${FAVICON_LINKS}
@@ -16,14 +16,14 @@ ${FAVICON_LINKS}
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hevexa">
-<meta property="og:title" content="About Hevexa">
+<meta property="og:title" content="About Hevexa — Software Company in Huber Heights, Ohio">
 <meta property="og:description" content="A small software company based in Huber Heights, Ohio, building focused, private apps.">
 <meta property="og:url" content="https://hevexa.net/about">
 <meta property="og:image" content="https://hevexa.net/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Hevexa">
+<meta name="twitter:title" content="About Hevexa — Software Company in Huber Heights, Ohio">
 <meta name="twitter:description" content="A small software company based in Huber Heights, Ohio, building focused, private apps.">
 
 ${FONT_LINKS}
