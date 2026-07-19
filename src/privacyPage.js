@@ -16,7 +16,6 @@ export const PRIVACY_PAGE_HTML = `<!DOCTYPE html>
 <link rel="canonical" href="https://hevexa.net/privacy">
 ${FAVICON_LINKS}
 <meta name="theme-color" content="#2D2A6E">
-<meta name="robots" content="noindex">
 
 ${FONT_LINKS}
 ${STYLESHEET_LINK}
