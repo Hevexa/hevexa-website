@@ -5,6 +5,12 @@ All rules live in `styles.css` — this doc just explains the system and how to
 reuse it correctly. Don't hardcode colors/spacing in a page; use the existing
 CSS variables and classes below.
 
+**Keep this file updated as the site changes** — whenever a color token,
+font, component, or the performance/accessibility setup below changes, update
+this file in the same commit. It exists so a fresh session (any account, any
+machine) can pick up exactly where the last one left off by reading the repo,
+without depending on chat history or memory.
+
 ## Brand
 
 - **Name:** Hevexa (company: Hevexa LLC)
@@ -47,12 +53,21 @@ existing ones.
 
 - **Headings:** `'Sora', sans-serif` — weight 700 for section headings
   (`h3.section-heading`), 800 for hero/page titles (`.hero h1`,
-  `.page-intro h1`). Loaded via Google Fonts in every page's `<head>`:
-  `family=Sora:wght@600;700;800`.
+  `.page-intro h1`).
 - **Body:** `'Inter', sans-serif` — weights 400/500/600, set once on `body`.
 - **Eyebrows** (`h2.section-title`): Sora 700, 12.5px, uppercase,
-  `letter-spacing: 0.1em`, colored `--rose`. Always precedes a
-  `h3.section-heading` inside a section.
+  `letter-spacing: 0.1em`, colored `--rose` (passes WCAG AA at 4.74:1 in
+  light mode, 8.44:1 in dark — see the Performance & accessibility section
+  below before introducing any *new* accent color for small text).
+  Always precedes a `h3.section-heading` inside a section.
+- **Self-hosted, not Google Fonts.** Both families are self-hosted as
+  `fonts/inter-latin.woff2` and `fonts/sora-latin.woff2` (one variable-font
+  file per family covers every weight in use — confirmed by checking
+  Google's own `fonts.googleapis.com/css2?...` response before downloading;
+  don't assume a separate file is needed per weight). `@font-face` rules
+  (with `font-display: optional`, not `swap` — see below) live at the top of
+  `styles.css`. `siteChrome.js`'s `FONT_PRELOAD_LINKS` preloads both files;
+  every page includes it in `<head>` before the inline stylesheet.
 
 ## Layout
 
@@ -118,11 +133,16 @@ existing ones.
   `/#contact`, not `index.html#contact`. `.html`-suffixed URLs no longer
   resolve to anything — `index.html`/`about.html`/`privacy.html` were
   deleted once their content moved into `src/`, so don't link to them.
-- **`styles.css` is cache-busted** via a `?v=N` query string on every
-  `<link>` reference (`STYLESHEET_LINK` in `siteChrome.js`, plus `404.html`'s
-  own copy). Bump `N` any time `styles.css` itself changes and redeploy —
-  otherwise Cloudflare's edge cache can keep serving an old cached copy to
-  some visitors after a CSS-only change.
+- **`styles.css` is inlined, not linked.** Every page embeds it directly via
+  a `<style>` block (`STYLE_TAG` from `src/inlineStyle.js`) instead of an
+  external `<link rel="stylesheet">`, to avoid a render-blocking request for
+  a stylesheet this small. There's no build step in this repo, so
+  `inlineStyle.js`'s content is a hand-maintained copy of `styles.css` —
+  **any edit to `styles.css` must be copied into `inlineStyle.js` too**, or
+  the live site keeps serving the old CSS even though the source file looks
+  updated. (Regenerate it with the Python one-liner in this repo's git
+  history — search the log for `inlineStyle.js` — rather than hand-copying,
+  to avoid transcription errors.)
 - Contact details (address/phone/email) appear in two places: `siteFooter()`
   in `siteChrome.js` (used by every page), and the JSON-LD `Organization`
   block in `src/homePage.js` only. Keep both in sync if they change.
@@ -140,3 +160,47 @@ existing ones.
 3. Reuse an existing card/list/button class before inventing a new one.
 4. Check it at both the desktop width and under 760px (the site's one
    breakpoint) before calling it done.
+
+## Performance & accessibility (apply to every new page — don't wait for an audit to catch these)
+
+Learned the hard way across a 2026-07-21 PageSpeed pass — every item here
+was a real, scored finding on this site or braid.hevexa.net's identical
+setup, not theoretical:
+
+- **Self-host web fonts, never link Google Fonts directly** (see
+  Typography above for how). Fetch the actual `.woff2` from
+  `fonts.gstatic.com`, not `fonts.googleapis.com`.
+- **`font-display: optional`, not `swap`.** `swap` causes a real, measurable
+  layout shift (CLS) once the custom font loads over the fallback —
+  Lighthouse's *desktop* throttled run catches this even when mobile
+  doesn't. `optional` skips the late reflow entirely. Preloading the font
+  files (`FONT_PRELOAD_LINKS`) is still worth doing on top of this, but
+  doesn't fix CLS by itself — `font-display` is what fixes it.
+  System-font stacks would sidestep this category of issue entirely, but
+  replacing Sora/Inter with system fonts is a brand decision, not a
+  performance one — don't make that call unilaterally to chase a couple of
+  points.
+- **Inline the CSS** (see `styles.css`/`inlineStyle.js` note above) rather
+  than linking an external stylesheet.
+- **Footer/nav headings must not skip a level.** `siteFooter()`'s column
+  headings are `<h2>` for exactly this reason (going *backward* from a
+  deeper content heading to h2 is fine; jumping *forward*, e.g. h2→h5, is
+  what Lighthouse flags — this is why the footer can safely stay h2 even
+  though `privacyPage.js` never uses anything past h2 itself).
+- **Every real form input needs a `<label>`** (a visually-hidden `.sr-only`
+  class is fine — see `styles.css`). Any hidden honeypot/anti-spam input
+  (`.hp-field` on the contact form) needs `aria-hidden="true"` too, or it
+  gets flagged as an unlabeled field.
+- **Check color contrast** (≥4.5:1, WCAG AA) for any *new* small/decorative
+  text color against its background — don't assume an existing token is
+  safe at a different size/weight than where it's already used. Compute it
+  before shipping, don't guess.
+- **Serve raster images as WebP with a fallback** via `<picture>`
+  (`braid-icon.png` → `.webp` is the existing example), and add/extend
+  `_headers` with a long, immutable `Cache-Control` for any new static
+  asset — rename the file on future content changes rather than
+  overwriting, since these are cached for a year.
+- **Test both mobile AND desktop on every real page** at
+  pagespeed.web.dev before calling a change done — desktop's throttled
+  profile has caught real regressions (the font-swap CLS above) that
+  mobile missed entirely.
