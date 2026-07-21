@@ -204,3 +204,12 @@ setup, not theoretical:
   pagespeed.web.dev before calling a change done — desktop's throttled
   profile has caught real regressions (the font-swap CLS above) that
   mobile missed entirely.
+- **Add `fetchpriority="high"` to whatever image Lighthouse names as the
+  LCP element.** `logo.svg` (the header brand mark, present on every page,
+  and the larger `.hero-mark` copy on the homepage) is the current LCP
+  candidate and already has it. This only needs to change if the LCP
+  element itself changes (e.g. a new hero image is added) — check the
+  audit's specific `<img>` snippet rather than assuming it's still the
+  logo. Don't add it to the footer's copy of the same image — that's never
+  an LCP candidate (below the fold at first paint), and prioritizing it
+  would just compete with resources that actually matter.
