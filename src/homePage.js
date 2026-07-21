@@ -146,7 +146,7 @@ ${siteHeader({ homePrefix: "" })}
           <input type="email" id="contact-email" placeholder="you@example.com" required autocomplete="email">
           <label for="contact-message" class="sr-only">Message</label>
           <textarea id="contact-message" placeholder="What's on your mind?" required></textarea>
-          <input type="text" id="contact-hp" class="hp-field" tabindex="-1" autocomplete="off">
+          <input type="text" id="contact-hp" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button type="submit" id="contact-btn">Send message</button>
         </form>
         <p id="contact-msg"></p>
