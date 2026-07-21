@@ -1,0 +1,20 @@
+# Cloudflare static-assets headers (matches wrangler.jsonc's assets.directory
+# ".") -- long, immutable caching for files that never change in place; if
+# any of these are ever replaced with different content, rename the file
+# (as the self-hosted fonts and icon already do) rather than reusing the
+# same path, so a stale cached copy can't linger on a client.
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/braid-icon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/braid-icon.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/og-image.png
+  Cache-Control: public, max-age=31536000, immutable

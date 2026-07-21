@@ -47,20 +47,20 @@ export function siteFooter({ homePrefix = "/" } = {}) {
         <p>A software company based in Huber Heights, Ohio, building focused, private apps.</p>
       </div>
       <div class="footer-col">
-        <h5>Apps</h5>
+        <h2>Apps</h2>
         <ul>
           <li><a href="${homePrefix}#braid">Braid</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
+        <h2>Company</h2>
         <ul>
           <li><a href="/about">About</a></li>
           <li><a href="/privacy">Privacy Policy</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Contact</h5>
+        <h2>Contact</h2>
         <ul>
           <li class="plain">2002 Cooley Ln<br>Huber Heights, OH 45424</li>
           <li><a href="mailto:chris@hevexa.net">chris@hevexa.net</a></li>
@@ -94,9 +94,3 @@ document.querySelectorAll('nav.site-nav a').forEach(function (a) {
 
 export const FAVICON_LINKS = `<link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="apple-touch-icon" href="logo.svg">`;
-
-export const FONT_LINKS = `<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">`;
-
-export const STYLESHEET_LINK = `<link rel="stylesheet" href="styles.css?v=4">`;

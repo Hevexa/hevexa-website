@@ -1,7 +1,8 @@
 // hevexa-website/src/aboutPage.js
 // Served at hevexa.net/about (see worker.js). Shared chrome (header,
 // footer, nav script) lives in siteChrome.js.
-import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS, FONT_LINKS, STYLESHEET_LINK } from "./siteChrome.js";
+import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS } from "./siteChrome.js";
+import { STYLE_TAG } from "./inlineStyle.js";
 
 export const ABOUT_PAGE_HTML = `<!DOCTYPE html>
 <html lang="en">
@@ -26,8 +27,7 @@ ${FAVICON_LINKS}
 <meta name="twitter:title" content="About Hevexa — Software Company in Huber Heights, Ohio">
 <meta name="twitter:description" content="A small software company based in Huber Heights, Ohio, building focused, private apps.">
 
-${FONT_LINKS}
-${STYLESHEET_LINK}
+${STYLE_TAG}
 </head>
 <body>
 

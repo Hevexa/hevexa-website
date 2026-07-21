@@ -1,7 +1,8 @@
 // hevexa-website/src/homePage.js
 // Served at hevexa.net/ (see worker.js). Shared chrome (header, footer,
 // nav script) lives in siteChrome.js.
-import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS, FONT_LINKS, STYLESHEET_LINK } from "./siteChrome.js";
+import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS } from "./siteChrome.js";
+import { STYLE_TAG } from "./inlineStyle.js";
 
 export const HOME_PAGE_HTML = `<!DOCTYPE html>
 <html lang="en">
@@ -26,8 +27,7 @@ ${FAVICON_LINKS}
 <meta name="twitter:title" content="Hevexa LLC">
 <meta name="twitter:description" content="A software company based in Huber Heights, Ohio, building Braid — a private app for couples.">
 
-${FONT_LINKS}
-${STYLESHEET_LINK}
+${STYLE_TAG}
 
 <script type="application/ld+json">
 {
@@ -97,7 +97,10 @@ ${siteHeader({ homePrefix: "" })}
         </div>
         <div class="product-visual">
           <div class="icon-frame">
-            <img src="braid-icon.png" alt="Braid app icon">
+            <picture>
+              <source srcset="braid-icon.webp" type="image/webp">
+              <img src="braid-icon.png" alt="Braid app icon" width="88" height="88">
+            </picture>
           </div>
           <h4>Braid</h4>
           <p class="store-status">Coming soon to the App Store</p>
@@ -139,7 +142,9 @@ ${siteHeader({ homePrefix: "" })}
       <h3 class="section-heading">Get in touch</h3>
       <div class="contact-card">
         <form id="contact-form">
+          <label for="contact-email" class="sr-only">Email address</label>
           <input type="email" id="contact-email" placeholder="you@example.com" required autocomplete="email">
+          <label for="contact-message" class="sr-only">Message</label>
           <textarea id="contact-message" placeholder="What's on your mind?" required></textarea>
           <input type="text" id="contact-hp" class="hp-field" tabindex="-1" autocomplete="off">
           <button type="submit" id="contact-btn">Send message</button>

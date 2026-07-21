@@ -4,7 +4,8 @@
 //
 // Legal content untouched by this refactor — ported verbatim from the old
 // privacy.html.
-import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS, FONT_LINKS, STYLESHEET_LINK } from "./siteChrome.js";
+import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS } from "./siteChrome.js";
+import { STYLE_TAG } from "./inlineStyle.js";
 
 export const PRIVACY_PAGE_HTML = `<!DOCTYPE html>
 <html lang="en">
@@ -17,8 +18,7 @@ export const PRIVACY_PAGE_HTML = `<!DOCTYPE html>
 ${FAVICON_LINKS}
 <meta name="theme-color" content="#2D2A6E">
 
-${FONT_LINKS}
-${STYLESHEET_LINK}
+${STYLE_TAG}
 
 <style>
   .legal h2 {

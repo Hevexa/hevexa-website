@@ -1,3 +1,11 @@
+// hevexa-website/src/inlineStyle.js
+// styles.css embedded as a <style> block so pages render without an extra
+// render-blocking request for it (Lighthouse flagged the external
+// stylesheet fetch as ~170ms of avoidable delay). This repo has no build
+// step, so there's no way to import the .css file's text directly --
+// styles.css stays the file to edit; keep this constant's content in sync
+// with it by hand when styles.css changes.
+export const STYLE_TAG = `<style>
 /* Self-hosted (was Google Fonts) -- one variable-font file per family
    covers the whole weight range Google was serving us across separate
    400/500/600 (Inter) and 600/700/800 (Sora) requests; confirmed via the
@@ -771,3 +779,4 @@ footer.site-footer {
     margin-right: 16px;
   }
 }
+</style>`;
