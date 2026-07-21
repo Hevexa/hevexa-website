@@ -94,3 +94,12 @@ document.querySelectorAll('nav.site-nav a').forEach(function (a) {
 
 export const FAVICON_LINKS = `<link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="apple-touch-icon" href="logo.svg">`;
+
+// Self-hosting fonts with font-display:swap paints text in a fallback font
+// first, then reflows once Inter/Sora finish downloading -- Lighthouse
+// caught this as a real layout shift (CLS 0.256 on /privacy desktop,
+// culprit: "Web font loaded"). Preloading gets both files fetching before
+// the browser commits to the fallback-font layout, so the swap lands
+// before first paint on a normal connection instead of after it.
+export const FONT_PRELOAD_LINKS = `<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>`;

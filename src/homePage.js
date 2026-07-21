@@ -1,7 +1,7 @@
 // hevexa-website/src/homePage.js
 // Served at hevexa.net/ (see worker.js). Shared chrome (header, footer,
 // nav script) lives in siteChrome.js.
-import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS } from "./siteChrome.js";
+import { siteHeader, siteFooter, NAV_SCRIPT, FAVICON_LINKS, FONT_PRELOAD_LINKS } from "./siteChrome.js";
 import { STYLE_TAG } from "./inlineStyle.js";
 
 export const HOME_PAGE_HTML = `<!DOCTYPE html>
@@ -27,6 +27,7 @@ ${FAVICON_LINKS}
 <meta name="twitter:title" content="Hevexa LLC">
 <meta name="twitter:description" content="A software company based in Huber Heights, Ohio, building Braid — a private app for couples.">
 
+${FONT_PRELOAD_LINKS}
 ${STYLE_TAG}
 
 <script type="application/ld+json">
