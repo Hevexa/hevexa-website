@@ -60,7 +60,7 @@ ${siteHeader({ homePrefix: "" })}
 <main>
   <section class="hero">
     <div class="wrap">
-      <div class="hero-mark"><img src="logo.svg" alt="Hevexa"></div>
+      <div class="hero-mark"><img src="logo.svg" alt="Hevexa" fetchpriority="high"></div>
       <h1>Software for the moments that matter.</h1>
       <p class="lead">Hevexa is a software company building focused, private apps. Our first product, Braid, is coming soon to the App Store.</p>
       <div class="hero-actions">

@@ -14,7 +14,7 @@ export function siteHeader({ homePrefix = "/" } = {}) {
   return `<header class="site-header">
   <div class="wrap">
     <a class="brand" href="./">
-      <img src="logo.svg" alt="Hevexa">
+      <img src="logo.svg" alt="Hevexa" fetchpriority="high">
       <span>Hevexa</span>
     </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
