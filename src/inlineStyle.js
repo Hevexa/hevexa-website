@@ -10,12 +10,21 @@ export const STYLE_TAG = `<style>
    covers the whole weight range Google was serving us across separate
    400/500/600 (Inter) and 600/700/800 (Sora) requests; confirmed via the
    fonts.googleapis.com CSS2 response that all requested weights within
-   the "latin" subset already resolved to this same file per family. */
+   the "latin" subset already resolved to this same file per family.
+   font-display was \`swap\` initially, but PageSpeed's desktop run (which
+   applies network throttling) still caught a real CLS of 0.256 on
+   /privacy with "Web font loaded" as the culprit -- preloading the files
+   didn't fix it under throttled conditions, so this uses \`optional\`
+   instead: the browser waits a short beat for the font and, if it's not
+   ready by first paint, just keeps the fallback for that page view
+   rather than reflowing into the custom font later. Trades an
+   occasional fallback-font render on a slow first visit for guaranteed
+   zero layout shift. */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400 600;
-  font-display: swap;
+  font-display: optional;
   src: url(/fonts/inter-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -24,7 +33,7 @@ export const STYLE_TAG = `<style>
   font-family: 'Sora';
   font-style: normal;
   font-weight: 600 800;
-  font-display: swap;
+  font-display: optional;
   src: url(/fonts/sora-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
